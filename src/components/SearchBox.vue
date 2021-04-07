@@ -9,25 +9,22 @@
         @input="fakeSearch"
       />
     </div>
-    <CollapseHeight>
-      <section v-if="hasFocus" class="search-box__suggestions-wrapper">
-        <h2 class="search-box__suggestions-title">Trending searches</h2>
-        <ul class="search-box__suggestions-list">
-          <li
-            v-for="suggestion in recentSearches"
-            :key="suggestion.query"
-            class="search-box__suggestion-item"
-          >
-            <Suggestion :item="suggestion" class="search-box__suggestion" />
-          </li>
-        </ul>
-      </section>
-    </CollapseHeight>
+    <section v-if="hasFocus" class="search-box__suggestions-wrapper">
+      <h2 class="search-box__suggestions-title">Trending searches</h2>
+      <ul class="search-box__suggestions-list">
+        <li
+          v-for="suggestion in recentSearches"
+          :key="suggestion.query"
+          class="search-box__suggestion-item"
+        >
+          <Suggestion :item="suggestion" class="search-box__suggestion" />
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
 <script lang="ts">
-import CollapseHeight from "@/components/CollapseHeight.vue";
 import SearchIcon from "@/components/SearchIcon.vue";
 import Suggestion from "@/components/Suggestion.vue";
 import { QuerySuggestion } from "@/models/suggestion.model";
@@ -42,7 +39,7 @@ interface SearchBoxData {
 
 export default Vue.extend({
   name: "SearchBox",
-  components: { Suggestion, CollapseHeight, SearchIcon },
+  components: { Suggestion, SearchIcon },
   data(): SearchBoxData {
     return {
       isLoading: false,
@@ -143,12 +140,6 @@ $input-height: 3em;
 
   &--has-focus {
     transform: scale(1);
-  }
-}
-
-.collapse-height {
-  &--enter-active {
-    transition-delay: 0.1s;
   }
 }
 </style>
