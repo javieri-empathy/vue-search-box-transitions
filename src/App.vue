@@ -24,6 +24,7 @@ export default Vue.extend({
   --light-font-color: #b6b9c5;
   --white-color: #f6f8fa;
 
+  --font-size-small: 12px;
   --font-size-standard: 16px;
   --font-size-big: 20px;
   --font-size-very-big: 24px;

@@ -6,8 +6,8 @@
     appear
     @afterEnter="removeDelay"
     @afterLeave="removeDelay"
-    @beforeEnter="setEnterDelay"
-    @beforeLeave="setLeaveDelay"
+    @beforeEnter="setDelay"
+    @beforeLeave="setDelay"
   >
     <slot />
   </transition-group>
@@ -30,7 +30,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    setEnterDelay(element: HTMLElement) {
+    setDelay(element: HTMLElement) {
       const index = parseInt(element.dataset.index ?? "0");
       element.style.transitionDelay = `${
         this.baseDelayMs + this.staggerMs * index
@@ -38,12 +38,6 @@ export default Vue.extend({
     },
     removeDelay(element: HTMLElement) {
       element.style.removeProperty("transitionDelay");
-    },
-    setLeaveDelay(element: HTMLElement) {
-      const index = parseInt(element.dataset.index ?? "0");
-      element.style.transitionDelay = `${
-        this.baseDelayMs + this.staggerMs * index
-      }ms`;
     },
   },
 });

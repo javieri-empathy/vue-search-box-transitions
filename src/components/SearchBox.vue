@@ -1,7 +1,7 @@
 <template>
   <div :class="cssClasses" class="search-box">
     <div class="search-box__input-wrapper">
-      <SearchIcon class="search-box__icon" :is-loading="isLoading" />
+      <SearchIcon :is-loading="isLoading" class="search-box__icon" />
       <input
         class="search-box__input"
         @blur="hasFocus = false"
@@ -18,12 +18,12 @@
           tag="ul"
         >
           <li
-            v-for="(query, index) in recentSearches"
-            :key="query"
+            v-for="(suggestion, index) in recentSearches"
+            :key="suggestion.query"
             :data-index="index"
             class="search-box__suggestion-item"
           >
-            <Suggestion :query="query" class="search-box__suggestion" />
+            <Suggestion :item="suggestion" class="search-box__suggestion" />
           </li>
         </Popup>
       </section>
@@ -36,17 +36,31 @@ import CollapseHeight from "@/components/CollapseHeight.vue";
 import Popup from "@/components/Popup.vue";
 import SearchIcon from "@/components/SearchIcon.vue";
 import Suggestion from "@/components/Suggestion.vue";
+import { QuerySuggestion } from "@/models/suggestion.model";
 import Vue from "vue";
+
+interface SearchBoxData {
+  fakeSearchId: number | null;
+  hasFocus: boolean;
+  isLoading: boolean;
+  recentSearches: QuerySuggestion[];
+}
 
 export default Vue.extend({
   name: "SearchBox",
   components: { Suggestion, Popup, CollapseHeight, SearchIcon },
-  data() {
+  data(): SearchBoxData {
     return {
       isLoading: false,
       hasFocus: false,
-      fakeSearchId: (null as unknown) as number,
-      recentSearches: ["Shirt", "Jacket", "Jeans"],
+      fakeSearchId: null as number | null,
+      recentSearches: [
+        { category: "looks", query: "Spring styles" },
+        { category: "men", query: "Shirt" },
+        { category: "women", query: "Dress" },
+        { category: "women", query: "Jeans" },
+        { category: "men", query: "Jacket" },
+      ],
     };
   },
   computed: {
@@ -59,10 +73,12 @@ export default Vue.extend({
   methods: {
     fakeSearch(): void {
       this.isLoading = true;
-      clearTimeout(this.fakeSearchId);
-      setTimeout(() => {
+      if (this.fakeSearchId !== null) {
+        clearTimeout(this.fakeSearchId);
+      }
+      this.fakeSearchId = setTimeout(() => {
         this.isLoading = false;
-      }, 5000);
+      }, 1500);
     },
   },
 });
