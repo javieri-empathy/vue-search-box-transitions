@@ -12,20 +12,15 @@
     <CollapseHeight>
       <section v-if="hasFocus" class="search-box__suggestions-wrapper">
         <h2 class="search-box__suggestions-title">Trending searches</h2>
-        <Popup
-          :base-delay-ms="100"
-          class="search-box__suggestions-list"
-          tag="ul"
-        >
+        <ul class="search-box__suggestions-list">
           <li
-            v-for="(suggestion, index) in recentSearches"
+            v-for="suggestion in recentSearches"
             :key="suggestion.query"
-            :data-index="index"
             class="search-box__suggestion-item"
           >
             <Suggestion :item="suggestion" class="search-box__suggestion" />
           </li>
-        </Popup>
+        </ul>
       </section>
     </CollapseHeight>
   </div>
@@ -33,7 +28,6 @@
 
 <script lang="ts">
 import CollapseHeight from "@/components/CollapseHeight.vue";
-import Popup from "@/components/Popup.vue";
 import SearchIcon from "@/components/SearchIcon.vue";
 import Suggestion from "@/components/Suggestion.vue";
 import { QuerySuggestion } from "@/models/suggestion.model";
@@ -48,7 +42,7 @@ interface SearchBoxData {
 
 export default Vue.extend({
   name: "SearchBox",
-  components: { Suggestion, Popup, CollapseHeight, SearchIcon },
+  components: { Suggestion, CollapseHeight, SearchIcon },
   data(): SearchBoxData {
     return {
       isLoading: false,
