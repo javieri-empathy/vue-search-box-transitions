@@ -71,12 +71,4 @@ export default Vue.extend({
     }
   }
 }
-
-.suggestion {
-  transition: background-color 0.2s ease-out;
-
-  &:hover {
-    background: var(--light-highlight-color);
-  }
-}
 </style>
