@@ -1,5 +1,5 @@
 <template>
-  <div :class="cssClasses" class="search-box">
+  <div class="search-box">
     <div class="search-box__input-wrapper">
       <SearchIcon :is-loading="isLoading" class="search-box__icon" />
       <input
@@ -54,13 +54,7 @@ export default Vue.extend({
       ],
     };
   },
-  computed: {
-    cssClasses(): Record<string, boolean> {
-      return {
-        "search-box--has-focus": this.hasFocus,
-      };
-    },
-  },
+  computed: {},
   methods: {
     fakeSearch(): void {
       this.isLoading = true;
@@ -131,15 +125,6 @@ $input-height: 3em;
   &__suggestion {
     width: 100%;
     height: 100%;
-  }
-}
-
-.search-box {
-  transition: transform 0.3s var(--ease-out-back);
-  transform: scale(0.9);
-
-  &--has-focus {
-    transform: scale(1);
   }
 }
 </style>
