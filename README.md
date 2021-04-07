@@ -7,7 +7,7 @@ more enjoyable to use.
 
 We can use these materials as reference:
 
-[![Search box transitions](https://cdn.dribbble.com/users/1332896/screenshots/14595257/search__1_.png?compress=1&resize=600x550)](https://dribbble.com/shots/4871057-Search-loading-animation/attachments/4871057-Search-loading-animation?mode=media)
+[![Search box transitions](https://cdn.dribbble.com/users/1332896/screenshots/14595257/search__1_.png?compress=1&resize=600x550)](https://dribbble.com/shots/14595257-Search-results)
 
 [![Search loading animation](https://cdn.dribbble.com/users/414694/screenshots/4871057/shot.gif)](https://dribbble.com/shots/4871057-Search-loading-animation/attachments/4871057-Search-loading-animation?mode=media)
 
